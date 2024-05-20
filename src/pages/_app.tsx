@@ -1,12 +1,39 @@
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
 import { store } from "@/store";
 import { Provider } from 'react-redux'
+import { authOptions } from "./api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+import { AppProps } from 'next/app';
+import { useEffect, useState } from 'react';
+import Login from '@/pages/login';
+import Register from '@/pages/register';
+import "@/styles/globals.css";
+import { SessionProvider, useSession } from 'next-auth/react';
 
-export default function App({ Component, pageProps }: AppProps) {
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>);
+      <SessionProvider session={pageProps.session}>
+        <AuthWrapper>
+          <Component {...pageProps} />
+        </AuthWrapper>
+      </SessionProvider>
+    </Provider>
+  );
 }
+
+function AuthWrapper({ children }) {
+  const { data: session, status } = useSession();
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    return <Login />;
+  }
+
+  return <>{children}</>;
+}
+
+export default MyApp;
