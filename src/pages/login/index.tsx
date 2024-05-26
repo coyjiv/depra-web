@@ -6,9 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth } from "@/firebaseConfig";
-import { GoogleSignInButton, FormSubmitButton } from "@/components/buttons/buttons";
+import { FormSubmitButton } from "@/components/buttons/buttons";
 import { signIn, useSession } from "next-auth/react";
 
 const LoginPage = () => {
@@ -59,17 +58,17 @@ const LoginPage = () => {
       toast.error("An error occurred while logging in");
     }
   };
-  const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      notifySuccess();
-      router.push("/");
-    } catch (error: any) {
-      console.error(error);
-      notifyError();
-    }
-  };
+  // const handleGoogleSignIn = async () => {
+  //   const provider = new GoogleAuthProvider();
+  //   try {
+  //     await signInWithPopup(auth, provider);
+  //     notifySuccess();
+  //     router.push("/");
+  //   } catch (error: any) {
+  //     console.error(error);
+  //     notifyError();
+  //   }
+  // };
 
   return (
     <div className="bg-gradient-to-br from-sky-300 to-blue-700 h-screen w-screen pt-40 px-5 md:px-0 md:pt-24">
@@ -85,10 +84,10 @@ const LoginPage = () => {
             </div>
             <InputField type="email" name="email" placeholder="Your email" />
             <InputField type="password" name="password" placeholder="Password" showPasswordToggle={true} />
-            <div className="flex justify-center text-center"><p>or</p></div>
+            {/* <div className="flex justify-center text-center"><p>or</p></div>
             <div className="flex my-5 justify-center items-center">
               <GoogleSignInButton onClick={handleGoogleSignIn} />
-            </div>
+            </div> */}
             <FormSubmitButton onClick={handleSubmit}>Login</FormSubmitButton>
           </Form>
         </div>
