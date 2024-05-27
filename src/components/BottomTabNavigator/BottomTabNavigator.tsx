@@ -12,7 +12,7 @@ const tabs = [
     { name: 'Billing', href: '#', icon: BiCreditCard, current: false },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 

@@ -130,7 +130,7 @@ const RegistrationPage = () => {
                                     label=""
                                 />
                             </div>
-                            <FormSubmitButton onClick={handleSubmit}>Register</FormSubmitButton>
+                            <FormSubmitButton onClick={handleSubmit as never}>Register</FormSubmitButton>
                         </Form>
                     </div>
                 )}

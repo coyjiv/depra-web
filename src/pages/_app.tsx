@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-function AuthWrapper({ children }) {
+function AuthWrapper({ children }: { children: React.ReactNode }) {
     const { data: session, status } = useSession();
 
     if (status === "loading") {
