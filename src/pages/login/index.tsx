@@ -14,15 +14,15 @@ const LoginPage = () => {
   const router = useRouter();
   const session = useSession();
   console.log(session);
-  
+
   useEffect(() => {
-  //   if(session.status === 'unauthenticated' && router.pathname !== '/login') {
-  //     router.replace('/login');
-  // }
+    //   if(session.status === 'unauthenticated' && router.pathname !== '/login') {
+    //     router.replace('/login');
+    // }
     if (session.status === "authenticated") {
       router.push("/");
     }
-  }, [router, session.status]);
+  }, [ router, session.status ]);
 
   const validate = Yup.object({
     email: Yup.string()
@@ -37,7 +37,7 @@ const LoginPage = () => {
 
   const notifySuccess = () => toast.success("The login is successful");
   const notifyError = () => toast.error("Your email or password is incorrect");
-  
+
   const handleSubmit = async (values) => {
     try {
       const response = await signIn("credentials", {
@@ -49,7 +49,7 @@ const LoginPage = () => {
       if (response?.error) {
         notifyError();
       } else if (response?.url) {
-        console.log( notifySuccess)
+        console.log(notifySuccess)
         notifySuccess();
         router.push('/');
       }
@@ -71,7 +71,7 @@ const LoginPage = () => {
   // };
 
   return (
-    <div className="bg-gradient-to-br from-sky-300 to-blue-700 h-screen w-screen pt-40 px-5 md:px-0 md:pt-24">
+    <div className="bg-gradient-to-br from-sky-300 to-green-700 h-screen w-screen pt-40 px-5 md:px-0 md:pt-24">
       <h1 className="text-5xl text-white flex justify-center items-center">DEPRA</h1>
       <Formik initialValues={initialValues} validationSchema={validate} onSubmit={handleSubmit}>
         <div className="flex mt-10 justify-center items-center text-white">

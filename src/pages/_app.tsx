@@ -10,6 +10,7 @@ import Register from "@/pages/register";
 import "@/styles/globals.css";
 import { SessionProvider, useSession } from "next-auth/react";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import BottomTabNavigator from "@/components/BottomTabNavigator/BottomTabNavigator";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
@@ -18,7 +19,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <AuthWrapper>
                     <div className="lg:flex lg:min-h-screen flex-none min-h-screen">
                         <Sidebar />
-                        <div className="lg:flex-1 flex bg-blue-400 min-h-screen">
+                        <div className="lg:hidden"><BottomTabNavigator /></div>
+                        <div className="lg:flex-1 flex bg-green-100 min-h-screen">
                             <Component {...pageProps} />
                         </div>
                     </div>

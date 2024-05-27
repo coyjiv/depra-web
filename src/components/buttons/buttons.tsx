@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { AiOutlineUser } from "react-icons/ai";
+import { CiLogout } from "react-icons/ci";
 
 export const SignInButton = () => {
     const { data: session, status } = useSession();
@@ -13,10 +14,10 @@ export const SignInButton = () => {
         'Loading...' :
         status === 'authenticated' ?
             <Link className="flex gap-3 bg-purple-300 w-fit px-2 py-3 rounded-lg" href={'/profile'}>
-                {session?.user?.image?
-                <Image className="rounded-lg" src={session?.user?.image!} alt={session?.user?.name!} width={32} height={32} />
-            : <AiOutlineUser className="rounded-lg w-[32px] h-[32px]"/>    
-            }
+                {session?.user?.image ?
+                    <Image className="rounded-lg" src={session?.user?.image!} alt={session?.user?.name!} width={32} height={32} />
+                    : <AiOutlineUser className="rounded-lg w-[32px] h-[32px]" />
+                }
                 {session?.user?.name!}
             </Link>
             :
@@ -26,7 +27,7 @@ export const SignInButton = () => {
 
 export const SignOutButton = () => {
     return (
-        <button onClick={() => signOut()}>Sign Out</button>
+        <button className="text-gray-800 text-lg flex items-center" onClick={() => signOut()}><CiLogout /></button>
     )
 }
 

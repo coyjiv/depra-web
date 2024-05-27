@@ -23,7 +23,7 @@ const RegistrationPage = () => {
             .min(8, "Password must be minimum 8 digits!")
             .required("Password Required!"),
         confirmPassword: Yup.string()
-            .oneOf([Yup.ref("password")], "Password must match!")
+            .oneOf([ Yup.ref("password") ], "Password must match!")
             .required("Confirm password is required!"),
         checkbox: Yup.boolean().test(
             "is-checked",
@@ -65,7 +65,7 @@ const RegistrationPage = () => {
     };
 
     return (
-        <div className="bg-gradient-to-br from-sky-300 to-blue-700 font-custom h-screen w-screen pt-40 px-5 md:px-0 md:pt-24">
+        <div className="bg-gradient-to-br from-sky-300 to-green-700 font-custom h-screen w-screen pt-40 px-5 md:px-0 md:pt-24">
             <h1 className="text-5xl text-white flex justify-center items-center font-nunito">
                 DEPRA
             </h1>
